@@ -1,0 +1,50 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #FFF5E6;
+}
+
+.container {
+  max-width: 1200px;
+}
+
+.text-orange-600 {
+  color: #FF6B35;
+}
+
+.bg-orange-500 {
+  background-color: #FF6B35;
+}
+
+.hover\:bg-orange-600:hover {
+  background-color: #E85A2D;
+}
+
+.text-orange-500 {
+  color: #FF8C61;
+}
+
+.bg-white {
+  background-color: #FFFFFF;
+}
+
+.shadow-md {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.transition-shadow {
+  transition-property: box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+.hover\:shadow-lg:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
