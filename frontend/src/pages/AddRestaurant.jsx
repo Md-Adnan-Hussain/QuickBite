@@ -1,24 +1,28 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import { PlusCircle } from 'lucide-react';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { PlusCircle } from "lucide-react";
 
 const AddRestaurant = () => {
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/restaurants', { name }, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-      });
-      toast.success('Restaurant added successfully');
-      navigate('/');
+      await axios.post(
+        "http://localhost:3000/api/restaurants",
+        { name },
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      toast.success("Restaurant added successfully");
+      navigate("/");
     } catch (error) {
-      console.error('Error adding restaurant:', error);
-      toast.error('Failed to add restaurant. Please try again.');
+      console.error("Error adding restaurant:", error);
+      toast.error("Failed to add restaurant. Please try again.");
     }
   };
 
@@ -30,7 +34,12 @@ const AddRestaurant = () => {
         </h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">Restaurant Name</label>
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Restaurant Name
+            </label>
             <input
               type="text"
               id="name"

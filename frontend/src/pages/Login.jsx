@@ -1,26 +1,29 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import { LogIn } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { LogIn } from "lucide-react";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+      const response = await axios.post(
+        "http://localhost:3000/api/auth/login",
+        { email, password }
+      );
       login(response.data.token, response.data.role);
-      toast.success('Logged in successfully');
-      navigate('/');
+      toast.success("Logged in successfully");
+      navigate("/");
     } catch (error) {
-      console.error('Login error:', error);
-      toast.error('Login failed. Please check your credentials and try again.');
+      console.error("Login error:", error);
+      toast.error("Login failed. Please check your credentials and try again.");
     }
   };
 
@@ -32,7 +35,12 @@ const Login = () => {
         </h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Email
+            </label>
             <input
               type="email"
               id="email"
@@ -43,7 +51,12 @@ const Login = () => {
             />
           </div>
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Password
+            </label>
             <input
               type="password"
               id="password"

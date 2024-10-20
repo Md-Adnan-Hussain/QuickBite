@@ -1,27 +1,33 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import { UserPlus } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { UserPlus } from "lucide-react";
+import { useAuth } from "../context/AuthContext";
 
 const Register = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/auth/register', { email, password });
-      const loginResponse = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+      await axios.post("http://localhost:3000/api/auth/register", {
+        email,
+        password,
+      });
+      const loginResponse = await axios.post(
+        "http://localhost:3000/api/auth/login",
+        { email, password }
+      );
       login(loginResponse.data.token, loginResponse.data.role);
-      toast.success('Registered and logged in successfully.');
-      navigate('/');
+      toast.success("Registered and logged in successfully.");
+      navigate("/");
     } catch (error) {
-      console.error('Registration error:', error);
-      toast.error('Registration failed. Please try again.');
+      console.error("Registration error:", error);
+      toast.error("Registration failed. Please try again.");
     }
   };
 
@@ -33,7 +39,12 @@ const Register = () => {
         </h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Email
+            </label>
             <input
               type="email"
               id="email"
@@ -44,7 +55,12 @@ const Register = () => {
             />
           </div>
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Password
+            </label>
             <input
               type="password"
               id="password"
